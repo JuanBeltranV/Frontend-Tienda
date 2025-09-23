@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chetanga – Productos</title>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <!-- HEADER (igual al de index) -->
+    <header class="shadow">
+    <div class="container topbar">
+        <a class="logo" href="index.html">
+        <img src="assets/logo.svg" alt="Chetanga" height="36" />
+        
+        </a>
+
+        <button class="menu-toggle" aria-expanded="false" aria-controls="navMenu" aria-label="Abrir menú">☰</button>
+
+        <nav id="navMenu" aria-label="Principal">
+        <ul class="nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a class="active" href="productos.html">Productos</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="nosotros.html">Nosotros</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="registro.html">Registrarse</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li>
+            <a class="btn-cart" href="detalle-producto.html#carrito" aria-label="Ver carrito">
+                🛒 <span id="cartCount">0</span>
+            </a>
+            </li>
+        </ul>
+        </nav>
+    </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="container" style="padding:1rem 0 2rem">
+    <h1>Productos</h1>
+
+    <!-- Filtros simples -->
+    <div class="filters" style="display:flex; gap:.75rem; align-items:center; margin:.5rem 0 1rem">
+        <label for="fCategoria">Categoría</label>
+        <select id="fCategoria">
+        <option value="">Todas</option>
+        <option>Manga</option>
+        <option>Cómic</option>
+        </select>
+    </div>
+
+    <!-- Grilla -->
+    <div id="gridProductos" class="grid"></div>
+    </main>
+
+    <!-- FOOTER (igual al de index) -->
+    <footer>
+    <div class="container footer-grid">
+        <div>
+        <h4>Chetanga</h4>
+        <p>Cómics y Mangas.</p>
+        </div>
+        <div>
+        <h4>Navegación</h4>
+        <ul>
+            <li><a href="productos.html">Productos</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+        </div>
+        <div>
+        <h4>Redes</h4>
+        <ul>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">X/Twitter</a></li>
+            <li><a href="#">YouTube</a></li>
+        </ul>
+        </div>
+    </div>
+    <div class="copy">© 2025 Chetanga Comics & Mangas</div>
+    </footer>
+
+    <!-- JS -->
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

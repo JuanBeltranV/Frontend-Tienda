@@ -1,17 +1,31 @@
+// =======================================================
+// Chetanga - app.js (simple, estilo estudiante)
+// - Navbar hamburguesa
+// - Home: render de Destacados
+// - Productos: listado + filtro por categoría
+// - Detalle (opcional): render por ?id=
+//   * No usa imports ni otros archivos, listo para probar.
+// =======================================================
+
+// -------------------------
 // Navbar hamburguesa
+// -------------------------
 const btn = document.querySelector('.menu-toggle');
 const nav = document.getElementById('navMenu');
 
 function toggleMenu() {
   const open = nav.classList.toggle('open');
-  btn?.setAttribute('aria-expanded', open ? 'true' : 'false');
+  if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
 }
 btn?.addEventListener('click', toggleMenu);
+// Cierra el menú al hacer click en un enlace (mejor UX en móvil)
 nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   if (nav.classList.contains('open')) toggleMenu();
 }));
 
-// Datos demo: si no existe window.PRODUCTOS, creamos algunos
+// -------------------------
+// Datos demo (si no existe window.PRODUCTOS)
+// -------------------------
 if (!window.PRODUCTOS) {
   window.PRODUCTOS = [
     {
@@ -58,38 +72,92 @@ if (!window.PRODUCTOS) {
       precio: 10990,
       stock: 6,
       imagen: "https://via.placeholder.com/600x800?text=Batman+A%C3%B1o+Uno",
-      sinopsis: "El origen oscuro del caballero de la noche.",
+      sinopsis: "El origen del caballero de la noche.",
       autor: "Frank Miller",
       editorial: "DC Comics"
     }
   ];
 }
 
-// Render de destacados (primeros 6 productos)
-const gridDest = document.getElementById('gridDestacados');
-if (gridDest) {
-  const destacados = window.PRODUCTOS.slice(0, 6);
-  gridDest.innerHTML = destacados.map(cardHtml).join('');
-  // Botones "Agregar" (por ahora solo muestran un alert)
-  gridDest.querySelectorAll('.add').forEach(btn => btn.addEventListener('click', () => {
-    alert('Añadido al carrito (demo)');
-  }));
+// -------------------------
+// Utilidades
+// -------------------------
+function precioCLP(n) {
+  return `$${Number(n).toLocaleString('es-CL')}`;
 }
 
 function cardHtml(p) {
-  const precioFmt = `$${Number(p.precio).toLocaleString('es-CL')}`;
   return `
     <article class="card">
       <img src="${p.imagen}" alt="${p.nombre}">
       <div class="p">
         <h3>${p.nombre}</h3>
         <div class="muted">${p.categoria}${p.autor ? ` · ${p.autor}` : ''}</div>
-        <div class="price">${precioFmt}</div>
-        <div class="row" style="display:flex; gap:.5rem; margin-top:.5rem">
+        <div class="price">${precioCLP(p.precio)}</div>
+        <div class="row">
           <a class="btn" href="detalle-producto.html?id=${p.id}">Ver</a>
-          <button class="add">Agregar</button>
+          <button class="add" data-id="${p.id}">Agregar</button>
         </div>
       </div>
     </article>
   `;
+}
+
+// -------------------------
+// Home: Destacados
+// -------------------------
+const gridDest = document.getElementById('gridDestacados');
+if (gridDest) {
+  const destacados = window.PRODUCTOS.slice(0, 6);
+  gridDest.innerHTML = destacados.map(cardHtml).join('');
+  gridDest.querySelectorAll('.add').forEach(b =>
+    b.addEventListener('click', () => alert('Añadido al carrito (demo)'))
+  );
+}
+
+// -------------------------
+// Productos: listado + filtro
+// -------------------------
+const gridProds = document.getElementById('gridProductos');
+if (gridProds) {
+  const sel = document.getElementById('fCategoria');
+
+  function render(cat = '') {
+    const data = cat ? window.PRODUCTOS.filter(p => p.categoria === cat) : window.PRODUCTOS;
+    gridProds.innerHTML = data.map(cardHtml).join('');
+    gridProds.querySelectorAll('.add').forEach(b =>
+      b.addEventListener('click', () => alert('Añadido al carrito (demo)'))
+    );
+  }
+
+  render(); // inicial
+  sel?.addEventListener('change', () => render(sel.value));
+}
+
+// -------------------------
+// Detalle (opcional): si existe un ?id= y la página tiene contenedores
+// -------------------------
+const params = new URLSearchParams(location.search);
+const detId = Number(params.get('id'));
+const elImg = document.getElementById('detImg');
+const elNombre = document.getElementById('detNombre');
+const elAutor = document.getElementById('detAutor');
+const elSinopsis = document.getElementById('detSinopsis');
+const elPrecio = document.getElementById('detPrecio');
+const btnAdd = document.getElementById('btnAdd');
+
+if (detId && elImg && elNombre && elPrecio) {
+  const p = window.PRODUCTOS.find(x => x.id === detId);
+  if (p) {
+    elImg.src = p.imagen;
+    elImg.alt = p.nombre;
+    elNombre.textContent = p.nombre;
+    if (elAutor) elAutor.textContent = [p.autor, p.editorial].filter(Boolean).join(' · ');
+    if (elSinopsis) elSinopsis.textContent = p.sinopsis || '';
+    elPrecio.textContent = precioCLP(p.precio);
+    btnAdd?.addEventListener('click', () => alert('Añadido al carrito (demo)'));
+  } else {
+    // Si no existe el producto, muestra algo simple
+    if (elNombre) elNombre.textContent = 'Producto no encontrado';
+  }
 }
