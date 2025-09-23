@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chetanga – Home</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="shadow">
+    <div class="container topbar">
+      <a class="logo" href="index.html">
+        <img src="assets/logo.svg" alt="Chetanga" height="36" />
+        <span>Chetanga</span>
+      </a>
+
+      <!-- Botón hamburguesa (visible en <= 980px) -->
+      <button class="menu-toggle" aria-expanded="false" aria-controls="navMenu" aria-label="Abrir menú">☰</button>
+
+      <nav id="navMenu" aria-label="Principal">
+        <ul class="nav">
+          <li><a class="active" href="index.html">Home</a></li>
+          <li><a href="productos.html">Productos</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="registro.html">Registrarse</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li>
+            <a class="btn-cart" href="detalle-producto.html#carrito" aria-label="Ver carrito">
+              🛒 <span id="cartCount">0</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+    <section class="hero container">
+      <div class="hero-text">
+        <h1>Cómics y Mangas</h1>
+        <p>Envíos a todo Chile.</p>
+        <a class="btn" href="productos.html">Ver productos</a>
+      </div>
+      <!-- Usa placeholder si aún no tienes imagen -->
+      <img class="hero-img" src="https://via.placeholder.com/800x400" alt="Banner Chetanga" />
+    </section>
+
+    <section class="container">
+      <h2>Destacados</h2>
+      <div id="gridDestacados" class="grid"></div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <h4>Chetanga</h4>
+        <p>Cómics y Mangas.</p>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="productos.html">Productos</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Redes</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">X/Twitter</a></li>
+          <li><a href="#">YouTube</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">© 2025 Chetanga Comics & Mangas</div>
+  </footer>
+
+  <!-- JS: solo app.js, sin dependencias -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
