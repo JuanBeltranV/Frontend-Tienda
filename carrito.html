@@ -3,11 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chetanga – Home</title>
+  <title>Chetanga – Carrito</title>
   <link rel="stylesheet" href="css/styles.css" />
-
-  <!-- (Opcional) favicon -->
-  <!-- <link rel="icon" type="image/x-icon" href="assets/favicon.ico"> -->
 </head>
 <body>
   <!-- HEADER -->
@@ -16,13 +13,10 @@
       <a class="logo" href="index.html">
         <img src="assets/logo.svg" alt="Chetanga" class="logo-img" />
       </a>
-
-      <!-- Botón hamburguesa (se muestra en <= 980px) -->
       <button class="menu-toggle" aria-expanded="false" aria-controls="navMenu" aria-label="Abrir menú">☰</button>
-
       <nav id="navMenu" aria-label="Principal">
         <ul class="nav">
-          <li><a class="active" href="index.html">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="productos.html">Productos</a></li>
           <li><a href="blog.html">Blog</a></li>
           <li><a href="nosotros.html">Nosotros</a></li>
@@ -41,27 +35,33 @@
   </header>
 
   <!-- MAIN -->
-  <main>
-    <!-- HERO FULL-WIDTH -->
-    <section class="hero-full" aria-label="Banner principal">
-      <div class="hero-bg">
-        <img src="assets/banners/hero.jpg" alt="Colección de cómics y mangas" />
-        <div class="hero-overlay">
-          <h1><span class="jp-font">Descubre nuestro catálogo de cómics y mangas</span></h1>
-          <p>Envíos a todo Chile</p>
+  <main class="container" style="padding:1rem 0 2rem">
+    <h1>Carrito</h1>
+
+    <!-- Lista de ítems -->
+    <section id="carritoLista" class="cart-list">
+      <!-- Se rellena por JS -->
+    </section>
+
+    <!-- Resumen -->
+    <section class="cart-summary">
+      <div class="card">
+        <div class="p">
+          <h3>Resumen</h3>
+          <div class="cart-totals">
+            <div><span>Subtotal</span><strong id="subTotal">$0</strong></div>
+            <div><span>Envío (demo)</span><strong id="ship">$2.990</strong></div>
+            <div class="sep"></div>
+            <div class="total"><span>Total</span><strong id="total">$0</strong></div>
+          </div>
+
+          <div class="row" style="margin-top:1rem">
+            <button id="btnVaciar" class="btn-outline">Vaciar carrito</button>
+            <a href="productos.html" class="btn-outline">Seguir comprando</a>
+            <button id="btnPagar" class="btn">Finalizar compra</button>
+          </div>
         </div>
       </div>
-    </section>
-
-    <!-- CTA debajo del banner -->
-    <section class="container hero-cta">
-      <a class="btn" href="productos.html">Ver productos</a>
-    </section>
-
-    <!-- DESTACADOS -->
-    <section class="container">
-      <h2>Destacados</h2>
-      <div id="gridDestacados" class="grid"></div>
     </section>
   </main>
 
@@ -93,6 +93,6 @@
   </footer>
 
   <!-- JS -->
-  <script defer src="js/app.js"></script>
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>

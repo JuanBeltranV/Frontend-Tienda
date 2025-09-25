@@ -115,6 +115,7 @@ header{
 .btn, button{
   background:var(--brand); color:#fff; border:1px solid transparent;
   border-radius:8px; padding:.55rem .9rem; cursor:pointer;
+  text-decoration:none; display:inline-block;
 }
 .btn:hover, button:hover{ filter:brightness(1.05) }
 .btn:focus-visible, button:focus-visible{ outline:2px solid #fff; outline-offset:2px }
@@ -128,6 +129,110 @@ header{
 .card h3{ margin:0 0 .25rem; font-size:1rem }
 .price{ color:var(--brand2); font-weight:700; margin-top:.35rem }
 .row{ display:flex; gap:.5rem; margin-top:.5rem }
+
+/* ===== Blog ===== */
+.blog-article{ margin-bottom:2rem; }
+.blog-article img{
+  width:100%; border-radius:10px; margin: .5rem 0 1rem; border:1px solid #262626;
+}
+.blog-article h2, .blog-article h1{ margin-top:0.2em; }
+.blog-article p{ margin-bottom:0.9rem; }
+
+/* Botón de volver */
+.back-row{ display:flex; justify-content:flex-start; margin:.25rem 0 1rem; }
+.btn-outline{ background:transparent; border:1px solid #3a3a3a; color:#f5f5f5; }
+.btn-outline:hover{ filter:none; background:#1a1a1a; }
+
+/* ===== Formularios (Registro/Login) ===== */
+.form-card{
+  background:#151515; border:1px solid #262626; border-radius:12px;
+  padding:1rem; max-width:720px; margin:.5rem 0 0;
+}
+.field{ display:flex; flex-direction:column; gap:.35rem; margin-bottom:.9rem }
+.field input, .field select, .field textarea{
+  background:#111; color:#f5f5f5; border:1px solid #2a2a2a; border-radius:10px;
+  padding:.6rem .75rem;
+}
+.field textarea{ min-height:120px; resize:vertical }
+.field input:focus, .field select:focus, .field textarea:focus{
+  outline:2px solid #3b82f6; outline-offset:2px; border-color:transparent;
+}
+.row2{ display:grid; grid-template-columns:1fr 1fr; gap:.9rem }
+.check{ display:flex; align-items:center; gap:.5rem; margin:.4rem 0 }
+.error{ color:#f87171; min-height:1em }
+.ok{
+  margin-top:.75rem; background:#0b3d17; color:#a7f3d0;
+  border:1px solid #065f46; padding:.65rem .8rem; border-radius:10px
+}
+
+/* ===== Formulario Contacto ===== */
+.form{
+  display:flex; flex-direction:column; gap:0.75rem; margin-top:1rem;
+}
+.form label{ font-weight:600; }
+.form input, .form textarea{
+  padding:0.6rem 0.8rem; border:1px solid #333; border-radius:8px;
+  background:#1a1a1a; color:var(--fg);
+}
+.form input:focus, .form textarea:focus{ outline:2px solid var(--brand); }
+
+/* ===== Detalle de producto ===== */
+.detail-grid{
+  display:grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap:1.25rem;
+  margin-top:.5rem;
+}
+.detail-media img{
+  width:100%; border-radius:12px; border:1px solid #262626;
+  background:#111;
+}
+.detail-info h1{ margin:.2rem 0 .3rem; }
+
+/* ===== Carrito ===== */
+.cart-list{
+  display:flex;
+  flex-direction:column;
+  gap:.75rem;
+  margin:.75rem 0 1rem;
+}
+.cart-row{
+  display:grid;
+  grid-template-columns: 1.4fr .6fr .7fr .7fr .5fr;
+  gap:.6rem;
+  align-items:center;
+  background:#151515;
+  border:1px solid #262626;
+  border-radius:10px;
+  padding:.6rem;
+}
+.cart-product{
+  display:flex; align-items:center; gap:.6rem;
+}
+.cart-thumb{
+  width:64px; height:64px; border-radius:8px; object-fit:cover; border:1px solid #262626;
+  background:#111;
+}
+.cart-name{ font-weight:600; margin:0; }
+.cart-price, .cart-line, .cart-actions{ text-align:center; }
+.cart-qty{
+  display:flex; justify-content:center; align-items:center; gap:.4rem;
+}
+.cart-qty button{
+  background:#222; border:1px solid #2a2a2a;
+  padding:.35rem .55rem; border-radius:8px; cursor:pointer;
+}
+.cart-actions .rm{
+  background:transparent; border:1px solid #3a3a3a; color:#f5f5f5; border-radius:8px; padding:.45rem .7rem;
+}
+.cart-summary{ margin-top:1rem; }
+.cart-totals{ display:flex; flex-direction:column; gap:.35rem; }
+.cart-totals div{ display:flex; align-items:center; justify-content:space-between; }
+.cart-totals .sep{ height:1px; background:#262626; margin:.35rem 0; }
+.cart-totals .total strong{ font-size:1.15rem; color:var(--brand2); }
+
+/* Utilidad */
+.hidden { display: none !important; }
 
 /* ===== Footer ===== */
 footer{ background:#101010; margin-top:2rem; border-top:1px solid #1e1e1e }
@@ -154,10 +259,23 @@ footer{ background:#101010; margin-top:2rem; border-top:1px solid #1e1e1e }
 
   /* Logo más pequeño en móvil */
   .logo-img{ height:60px; top:2px; }
+
+  .row2{ grid-template-columns:1fr; }
+  .detail-grid{ grid-template-columns:1fr; }
+
+  .cart-row{
+    grid-template-columns: 1.2fr .6fr .8fr .8fr;
+  }
+  .cart-actions{ display:none; }
 }
 @media (max-width:600px){
   .nav a{ padding:.6rem .75rem }
   .logo-text{ display:none; }
+
+  .cart-row{
+    grid-template-columns: 1fr .6fr .8fr;
+  }
+  .cart-line{ display:none; }
 }
 
 /* Menos animación si el usuario lo pide */

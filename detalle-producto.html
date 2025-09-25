@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chetanga – Detalle de producto</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="shadow">
+    <div class="container topbar">
+      <a class="logo" href="index.html">
+        <img src="assets/logo.svg" alt="Chetanga" class="logo-img" />
+      </a>
+      <button class="menu-toggle" aria-expanded="false" aria-controls="navMenu" aria-label="Abrir menú">☰</button>
+      <nav id="navMenu" aria-label="Principal">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="productos.html">Productos</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+          <li><a href="registro.html">Registrarse</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li>
+            <a class="btn-cart" href="carrito.html" aria-label="Ver carrito">
+              🛒 <span id="cartCount">0</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="container" style="padding:1rem 0 2rem">
+    <div class="back-row">
+      <a class="btn btn-outline" href="productos.html">← Volver</a>
+    </div>
+
+    <section id="detalle" class="detail-grid">
+      <div class="detail-media">
+        <img id="detailImg" src="" alt="Portada" />
+      </div>
+
+      <div class="detail-info">
+        <h1 id="detailTitle">Cargando…</h1>
+        <p class="muted" id="detailMeta"></p>
+
+        <p id="detailSinopsis"></p>
+
+        <div style="margin:.6rem 0 .4rem">
+          <strong>Precio:</strong> <span id="detailPrecio"></span>
+        </div>
+        <div class="row" style="margin-top:.6rem">
+          <button id="btnAdd" class="btn">Agregar al carrito</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Relacionados -->
+    <section style="margin-top:1.2rem">
+      <h2>Te puede interesar</h2>
+      <div id="relacionadosGrid" class="grid"></div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <h4>Chetanga™</h4>
+        <p>Cómics y Mangas.</p>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="productos.html">Productos</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Redes</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">X/Twitter</a></li>
+          <li><a href="#">YouTube</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">© 2025 Chetanga™ Comics & Mangas</div>
+  </footer>
+
+  <!-- JS -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

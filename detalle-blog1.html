@@ -3,11 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Chetanga – Home</title>
+  <title>Chetanga – Comic-Con Chile 2025</title>
   <link rel="stylesheet" href="css/styles.css" />
-
-  <!-- (Opcional) favicon -->
-  <!-- <link rel="icon" type="image/x-icon" href="assets/favicon.ico"> -->
 </head>
 <body>
   <!-- HEADER -->
@@ -16,15 +13,12 @@
       <a class="logo" href="index.html">
         <img src="assets/logo.svg" alt="Chetanga" class="logo-img" />
       </a>
-
-      <!-- Botón hamburguesa (se muestra en <= 980px) -->
       <button class="menu-toggle" aria-expanded="false" aria-controls="navMenu" aria-label="Abrir menú">☰</button>
-
       <nav id="navMenu" aria-label="Principal">
         <ul class="nav">
-          <li><a class="active" href="index.html">Home</a></li>
+          <li><a href="index.html">Home</a></li>
           <li><a href="productos.html">Productos</a></li>
-          <li><a href="blog.html">Blog</a></li>
+          <li><a class="active" href="blog.html">Blog</a></li>
           <li><a href="nosotros.html">Nosotros</a></li>
           <li><a href="contacto.html">Contacto</a></li>
           <li><a href="registro.html">Registrarse</a></li>
@@ -41,28 +35,38 @@
   </header>
 
   <!-- MAIN -->
-  <main>
-    <!-- HERO FULL-WIDTH -->
-    <section class="hero-full" aria-label="Banner principal">
-      <div class="hero-bg">
-        <img src="assets/banners/hero.jpg" alt="Colección de cómics y mangas" />
-        <div class="hero-overlay">
-          <h1><span class="jp-font">Descubre nuestro catálogo de cómics y mangas</span></h1>
-          <p>Envíos a todo Chile</p>
-        </div>
-      </div>
-    </section>
+  <main class="container" style="padding:1rem 0 2rem">
+    <div class="back-row">
+      <a class="btn btn-outline" href="blog.html">← Volver al blog</a>
+    </div>
 
-    <!-- CTA debajo del banner -->
-    <section class="container hero-cta">
-      <a class="btn" href="productos.html">Ver productos</a>
-    </section>
+    <article class="blog-article">
+      <h1>Comic-Con Chile 2025: ¡lo que no te puedes perder!</h1>
+      <p class="muted">Publicado el 25 de septiembre de 2025</p>
+      <img src="assets/blog/comiccon2025.jpg" alt="Comic-Con Chile 2025" />
 
-    <!-- DESTACADOS -->
-    <section class="container">
-      <h2>Destacados</h2>
-      <div id="gridDestacados" class="grid"></div>
-    </section>
+      <p>
+        La Comic-Con Chile 2025 llega con más metros cuadrados, más artistas invitados
+        y una parrilla de actividades pensada para todos los públicos. Durante tres días
+        se mezclarán charlas, firmas de autógrafos, lanzamientos de editoriales y
+        concursos de cosplay con una producción de primer nivel.
+      </p>
+      <p>
+        Entre los invitados confirmados habrá dibujantes y guionistas de renombre, además
+        de celebridades del cine y la TV. Los stands oficiales ofrecerán mercancía exclusiva,
+        y varias editoriales prometen adelantos y ediciones limitadas.
+      </p>
+      <h3>Tips para asistir</h3>
+      <ul>
+        <li>Llega temprano para evitar filas y aprovecha los paneles de la mañana.</li>
+        <li>Si vas a cosplay, considera telas livianas y calzado cómodo.</li>
+        <li>Lleva efectivo y tarjeta: algunos stands tienen promociones especiales.</li>
+      </ul>
+      <p>
+        ¡Nos vemos allá! Y recuerda que en <strong>Chetanga</strong> tendremos promos especiales
+        durante el evento.
+      </p>
+    </article>
   </main>
 
   <!-- FOOTER -->
