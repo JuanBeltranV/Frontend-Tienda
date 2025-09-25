@@ -60,26 +60,32 @@ function renderCatalogo(){
 
 // ===== Detalle de producto =====
 function renderDetalle(){
+  // funciona tanto en local server como en GitHub Pages
   if (!location.pathname.endsWith('detalle-producto.html')) return;
 
   const params = new URLSearchParams(location.search);
   const id = Number(params.get('id'));
+
+  // 🚦 Guard 1: si no hay ?id=, vuelve a productos
+  if (!id) {
+    console.warn('Sin ?id= en detalle-producto, redirigiendo…');
+    location.href = 'productos.html';
+    return;
+  }
+
   const prod = PRODUCTOS.find(p => p.id === id);
+
+  // 🚦 Guard 2: si el id no existe en el catálogo, vuelve a productos
+  if (!prod) {
+    console.warn('Producto no encontrado, redirigiendo…');
+    location.href = 'productos.html';
+    return;
+  }
 
   const img = $('#detailImg'), title = $('#detailTitle');
   const meta = $('#detailMeta'), sin = $('#detailSinopsis');
   const precio = $('#detailPrecio'), btnAdd = $('#btnAdd');
   const relGrid = $('#relacionadosGrid');
-
-  if (!prod){
-    if (title) title.textContent = 'Producto no encontrado';
-    if (meta) meta.textContent = '';
-    if (sin) sin.textContent = 'Es posible que el producto haya sido removido.';
-    if (img) img.style.display = 'none';
-    if (btnAdd) btnAdd.style.display = 'none';
-    if (relGrid) relGrid.innerHTML = '';
-    return;
-  }
 
   if (img){ img.src = prod.imagen; img.alt = prod.nombre; }
   if (title) title.textContent = prod.nombre;
@@ -95,7 +101,9 @@ function renderDetalle(){
 
   if (relGrid){
     const otros = PRODUCTOS.filter(p => p.id !== prod.id);
-    const pool = otros.length <= 3 ? otros : (()=>{ const arr=[...otros], pick=[]; for(let i=0;i<3;i++){ const idx=Math.floor(Math.random()*arr.length); pick.push(arr.splice(idx,1)[0]); } return pick; })();
+    const pool = otros.length <= 3
+      ? otros
+      : (()=>{ const arr=[...otros], pick=[]; for(let i=0;i<3;i++){ const idx=Math.floor(Math.random()*arr.length); pick.push(arr.splice(idx,1)[0]); } return pick; })();
     relGrid.innerHTML = pool.map(crearCard).join('');
     bindCardButtons(relGrid, { onAdd, onVer });
   }
