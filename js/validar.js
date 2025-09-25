@@ -2,23 +2,22 @@ import { $ } from './utils.js';
 
 // Registro
 export function initRegistro(){
-  const form = $('#formRegistro');
-  if (!form) return;
+    const form = $('#formRegistro');
+    if (!form) return;
 
-  const nombre = $('#nombre'), apellido = $('#apellido'), email = $('#email');
-  const pass = $('#pass'), pass2 = $('#pass2'), tyc = $('#tyc');
-  const errTyc = $('#errTyc'), msgOk = $('#msgOk');
+    const nombre = $('#nombre'), apellido = $('#apellido'), email = $('#email');
+    const pass = $('#pass'), pass2 = $('#pass2'), tyc = $('#tyc');
+    const errTyc = $('#errTyc'), msgOk = $('#msgOk');
 
-  // ✅ Corregido: no asignar con optional chaining
-  const setErr = (input, msg) => {
+    const setErr = (input, msg) => {
     if (!input) return;
     const el = input.parentElement ? input.parentElement.querySelector('.error') : null;
     if (el) el.textContent = msg || '';
-  };
+    };
 
-  const reEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const reEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  function validar(){
+    function validar(){
     let ok = true;
     if (!nombre.value.trim()) { setErr(nombre,'Ingresa tu nombre'); ok=false; } else setErr(nombre,'');
     if (!apellido.value.trim()) { setErr(apellido,'Ingresa tu apellido'); ok=false; } else setErr(apellido,'');
@@ -27,38 +26,38 @@ export function initRegistro(){
     if (pass2.value !== pass.value) { setErr(pass2,'No coinciden'); ok=false; } else setErr(pass2,'');
     if (!tyc.checked) { if (errTyc) errTyc.textContent = 'Debes aceptar'; ok=false; } else if (errTyc) errTyc.textContent = '';
     return ok;
-  }
+    }
 
-  form.addEventListener('submit', e=>{
+    form.addEventListener('submit', e=>{
     e.preventDefault();
     if (!validar()) return;
 
     const users = JSON.parse(localStorage.getItem('chetanga_users')||'[]');
     if (users.some(u=>u.email.toLowerCase()===email.value.trim().toLowerCase())){
-      setErr(email,'Correo ya registrado'); 
-      return;
+        setErr(email,'Correo ya registrado'); 
+        return;
     }
 
     users.push({
-      nombre: nombre.value.trim(),
-      apellido: apellido.value.trim(),
-      email: email.value.trim(),
-      pass: pass.value
+        nombre: nombre.value.trim(),
+        apellido: apellido.value.trim(),
+        email: email.value.trim(),
+        pass: pass.value
     });
     localStorage.setItem('chetanga_users', JSON.stringify(users));
     form.reset(); 
     if (msgOk) msgOk.hidden = false;
-  });
+    });
 }
 
 // Login
 export function initLogin(){
-  const form = $('#formLogin');
-  if (!form) return;
-  const email = $('#loginEmail'), pass = $('#loginPass');
-  const err = $('#errLogin'), ok = $('#msgLoginOk');
+    const form = $('#formLogin');
+    if (!form) return;
+    const email = $('#loginEmail'), pass = $('#loginPass');
+    const err = $('#errLogin'), ok = $('#msgLoginOk');
 
-  form.addEventListener('submit', e=>{
+    form.addEventListener('submit', e=>{
     e.preventDefault();
     const users = JSON.parse(localStorage.getItem('chetanga_users')||'[]');
     const user = users.find(u => u.email.toLowerCase()===email.value.trim().toLowerCase() && u.pass===pass.value);
@@ -67,17 +66,17 @@ export function initLogin(){
     if (ok) ok.hidden = false;
     localStorage.setItem('chetanga_session', JSON.stringify(user));
     setTimeout(()=>location.href='index.html', 1000);
-  });
+    });
 }
 
 // Contacto
 export function initContacto(){
-  const form = $('#formContacto');
-  if (!form) return;
-  const msg = $('#msgContacto') || $('#msgContactoOk');
-  form.addEventListener('submit', e=>{
+    const form = $('#formContacto');
+    if (!form) return;
+    const msg = $('#msgContacto') || $('#msgContactoOk');
+    form.addEventListener('submit', e=>{
     e.preventDefault();
     form.reset();
     if (msg){ msg.hidden = false; setTimeout(()=>{ msg.hidden = true; }, 2500); }
-  });
+    });
 }

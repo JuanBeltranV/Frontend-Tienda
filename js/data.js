@@ -1,6 +1,6 @@
 // Catálogo de productos (compartido)
 export const PRODUCTOS = [
-  {
+    {
     id: 1,
     codigo: "CB-ABS-BAT-001",
     nombre: "Absolute Batman",
@@ -11,8 +11,8 @@ export const PRODUCTOS = [
     sinopsis: "La historia definitiva de Batman en su versión Absolute.",
     autor: "Bob Kane / Bill Finger",
     editorial: "DC Comics"
-  },
-  {
+    },
+    {
     id: 2,
     codigo: "CB-AVG-HERO-001",
     nombre: "Avengers: La Edad Heroica",
@@ -23,8 +23,8 @@ export const PRODUCTOS = [
     sinopsis: "Los Vengadores se reúnen en una nueva era de héroes.",
     autor: "Brian Michael Bendis",
     editorial: "Marvel Comics"
-  },
-  {
+    },
+    {
     id: 3,
     codigo: "MG-BC-001",
     nombre: "Black Clover #1",
@@ -35,8 +35,8 @@ export const PRODUCTOS = [
     sinopsis: "Asta sueña con convertirse en el Rey Mago, aunque no tenga magia.",
     autor: "Yūki Tabata",
     editorial: "Shueisha"
-  },
-  {
+    },
+    {
     id: 4,
     codigo: "MG-BLE-001",
     nombre: "Bleach #1",
@@ -47,8 +47,8 @@ export const PRODUCTOS = [
     sinopsis: "Ichigo Kurosaki obtiene poderes de Shinigami y protege a los vivos de los Hollows.",
     autor: "Tite Kubo",
     editorial: "Shueisha"
-  },
-  {
+    },
+    {
     id: 5,
     codigo: "MG-DND-001",
     nombre: "Dandadan #1",
@@ -59,8 +59,8 @@ export const PRODUCTOS = [
     sinopsis: "Una mezcla única de lo paranormal con acción trepidante.",
     autor: "Yukinobu Tatsu",
     editorial: "Shueisha"
-  },
-  {
+    },
+    {
     id: 6,
     codigo: "MG-HXH-001",
     nombre: "Hunter x Hunter #1",
@@ -71,8 +71,8 @@ export const PRODUCTOS = [
     sinopsis: "Gon Freecss inicia su aventura para convertirse en Cazador.",
     autor: "Yoshihiro Togashi",
     editorial: "Shueisha"
-  },
-  {
+    },
+    {
     id: 7,
     codigo: "MG-NAR-001",
     nombre: "Naruto #1",
@@ -83,8 +83,8 @@ export const PRODUCTOS = [
     sinopsis: "El inicio de la historia de Naruto Uzumaki, el ninja que sueña con ser Hokage.",
     autor: "Masashi Kishimoto",
     editorial: "Shueisha"
-  },
-  {
+    },
+    {
     id: 8,
     codigo: "MG-OP-001",
     nombre: "One Piece #1",
@@ -95,8 +95,8 @@ export const PRODUCTOS = [
     sinopsis: "Monkey D. Luffy inicia su viaje para convertirse en el Rey de los Piratas.",
     autor: "Eiichirō Oda",
     editorial: "Shueisha"
-  },
-  {
+    },
+    {
     id: 9,
     codigo: "CB-SSM-001",
     nombre: "Superior Spider-Man #1",
@@ -107,5 +107,5 @@ export const PRODUCTOS = [
     sinopsis: "Otto Octavius toma el lugar de Spider-Man, buscando ser un héroe superior.",
     autor: "Dan Slott",
     editorial: "Marvel"
-  }
+    }
 ];

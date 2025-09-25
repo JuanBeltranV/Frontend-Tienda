@@ -66,7 +66,7 @@ function renderDetalle(){
   const params = new URLSearchParams(location.search);
   const id = Number(params.get('id'));
 
-  // 🚦 Guard 1: si no hay ?id=, vuelve a productos
+  // Guard 1: si no hay ?id=, vuelve a productos
   if (!id) {
     console.warn('Sin ?id= en detalle-producto, redirigiendo…');
     location.href = 'productos.html';
@@ -75,7 +75,7 @@ function renderDetalle(){
 
   const prod = PRODUCTOS.find(p => p.id === id);
 
-  // 🚦 Guard 2: si el id no existe en el catálogo, vuelve a productos
+  // Guard 2: si el id no existe en el catálogo, vuelve a productos
   if (!prod) {
     console.warn('Producto no encontrado, redirigiendo…');
     location.href = 'productos.html';
