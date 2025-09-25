@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-    <!-- HEADER (igual al de index) -->
+    <!-- HEADER -->
     <header class="shadow">
     <div class="container topbar">
         <a class="logo" href="index.html">
-        <img src="assets/logo.svg" alt="Chetanga" height="36" />
-        
+        <img src="assets/logo.svg" alt="Chetanga" class="logo-img" />
         </a>
 
+        <!-- Botón hamburguesa (se muestra en <= 980px) -->
         <button class="menu-toggle" aria-expanded="false" aria-controls="navMenu" aria-label="Abrir menú">☰</button>
 
         <nav id="navMenu" aria-label="Principal">
@@ -40,13 +40,13 @@
     <main class="container" style="padding:1rem 0 2rem">
     <h1>Productos</h1>
 
-    <!-- Filtros simples -->
-    <div class="filters" style="display:flex; gap:.75rem; align-items:center; margin:.5rem 0 1rem">
+    <!-- Filtro de categoría -->
+    <div class="filters" style="display:flex; gap:.75rem; align-items:center; flex-wrap:wrap; margin:.5rem 0 1rem">
         <label for="fCategoria">Categoría</label>
         <select id="fCategoria">
         <option value="">Todas</option>
-        <option>Manga</option>
-        <option>Cómic</option>
+        <option value="Manga">Manga</option>
+        <option value="Cómic">Cómic</option>
         </select>
     </div>
 
@@ -54,11 +54,11 @@
     <div id="gridProductos" class="grid"></div>
     </main>
 
-    <!-- FOOTER (igual al de index) -->
+    <!-- FOOTER -->
     <footer>
     <div class="container footer-grid">
         <div>
-        <h4>Chetanga</h4>
+        <h4>Chetanga™</h4>
         <p>Cómics y Mangas.</p>
         </div>
         <div>
@@ -78,10 +78,10 @@
         </ul>
         </div>
     </div>
-    <div class="copy">© 2025 Chetanga Comics & Mangas</div>
+    <div class="copy">© 2025 Chetanga™ Comics & Mangas</div>
     </footer>
 
     <!-- JS -->
-    <script type="module" src="js/app.js"></script>
+    <script defer src="js/app.js"></script>
 </body>
 </html>

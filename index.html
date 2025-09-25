@@ -5,14 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chetanga – Home</title>
   <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- (Opcional) favicon -->
+  <!-- <link rel="icon" type="image/x-icon" href="assets/favicon.ico"> -->
 </head>
 <body>
   <!-- HEADER -->
   <header class="shadow">
     <div class="container topbar">
       <a class="logo" href="index.html">
-        <img src="assets/logo.svg" alt="Chetanga" height="36" />
-        
+        <img src="assets/logo.svg" alt="Chetanga" class="logo-img" />
       </a>
 
       <!-- Botón hamburguesa (se muestra en <= 980px) -->
@@ -39,16 +41,23 @@
 
   <!-- MAIN -->
   <main>
-    <section class="hero container">
-      <div class="hero-text">
-        <h1>Cómics y Mangas</h1>
-        <p>Envíos a todo Chile.</p>
-        <a class="btn" href="productos.html">Ver productos</a>
+    <!-- HERO FULL-WIDTH -->
+    <section class="hero-full" aria-label="Banner principal">
+      <div class="hero-bg">
+        <img src="assets/banners/hero.jpg" alt="Colección de cómics y mangas" />
+        <div class="hero-overlay">
+          <h1><span class="jp-font">Descubre nuestro catálogo de cómics y mangas</span></h1>
+          <p>Envíos a todo Chile</p>
+        </div>
       </div>
-      <!-- Usa placeholder si aún no tienes imagen -->
-      <img class="hero-img" src="assets/banners/hero.jpg" alt="Banner Chetanga">
     </section>
 
+    <!-- CTA debajo del banner -->
+    <section class="container hero-cta">
+      <a class="btn" href="productos.html">Ver productos</a>
+    </section>
+
+    <!-- DESTACADOS -->
     <section class="container">
       <h2>Destacados</h2>
       <div id="gridDestacados" class="grid"></div>
@@ -59,7 +68,7 @@
   <footer>
     <div class="container footer-grid">
       <div>
-        <h4>Chetanga</h4>
+        <h4>Chetanga™</h4>
         <p>Cómics y Mangas.</p>
       </div>
       <div>
@@ -79,10 +88,10 @@
         </ul>
       </div>
     </div>
-    <div class="copy">© 2025 Chetanga Comics & Mangas</div>
+    <div class="copy">© 2025 Chetanga™ Comics & Mangas</div>
   </footer>
 
-  <!-- JS: sin dependencias -->
-  <script type="module" src="js/app.js"></script>
+  <!-- JS -->
+  <script defer src="js/app.js"></script>
 </body>
 </html>
