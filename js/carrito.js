@@ -2,90 +2,87 @@ import { $, precioCLP } from './utils.js';
 
 const CART_KEY = 'chetanga_cart';
 
-// Normaliza posibles estructuras antiguas
-function normalizeCart(raw){
-  if (!Array.isArray(raw)) return [];
-  const byId = new Map();
-  for (const it of raw){
-    if (!it || typeof it !== 'object') continue;
+// --- helpers de storage ---
+function loadCartRaw(){
+  try { return JSON.parse(localStorage.getItem(CART_KEY) || '[]'); }
+  catch { return []; }
+}
+function saveCartRaw(cart){
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+}
+
+// Normaliza a [{id, nombre, precio, imagen, cant}]
+function normalize(cart){
+  if (!Array.isArray(cart)) return [];
+  const map = new Map();
+  for (const it of cart){
+    if (!it || typeof it!=='object') continue;
     const id = Number(it.id);
     if (!id) continue;
     const cant = Math.max(1, Number(it.cant || 0) || 1);
     const precio = Number(it.precio) || 0;
-    const base = byId.get(id) || {
-      id, nombre: it.nombre || '', precio, imagen: it.imagen || '', cant: 0
-    };
-    base.cant += cant;
-    byId.set(id, base);
+    const item = map.get(id) || { id, nombre: it.nombre||'', precio, imagen: it.imagen||'', cant: 0 };
+    item.cant += cant;
+    map.set(id, item);
   }
-  return [...byId.values()];
+  return [...map.values()];
 }
 
-export function loadCart(){
-  try { return normalizeCart(JSON.parse(localStorage.getItem(CART_KEY) || '[]')); }
-  catch { return []; }
-}
-export function saveCart(cart){ localStorage.setItem(CART_KEY, JSON.stringify(cart)); }
+export function loadCart(){ return normalize(loadCartRaw()); }
+export function saveCart(cart){ saveCartRaw(normalize(cart)); }
 
-export const cartCount = (cart) => cart.reduce((acc, it)=> acc + (it.cant||0), 0);
-export const cartSubtotal = (cart) => cart.reduce((acc, it)=> acc + it.precio * (it.cant||0), 0);
+export const cartCount   = (cart) => cart.reduce((a, it)=> a + (it.cant||0), 0);
+export const cartSubtotal= (cart) => cart.reduce((a, it)=> a + (Number(it.precio)||0) * (it.cant||0), 0);
 
-// Agrega 1 unidad de un producto
+// --- API pública ---
 export function agregarCarritoBasico(producto){
   const cart = loadCart();
   const i = cart.findIndex(x=>x.id === producto.id);
-  if (i >= 0) {
-    cart[i].cant = (cart[i].cant || 0) + 1;
-  } else {
-    cart.push({
-      id: producto.id,
-      nombre: producto.nombre,
-      precio: Number(producto.precio) || 0,
-      imagen: producto.imagen,
-      cant: 1
-    });
-  }
+  if (i >= 0) cart[i].cant += 1;
+  else cart.push({ id: producto.id, nombre: producto.nombre, precio: Number(producto.precio)||0, imagen: producto.imagen, cant: 1 });
+  saveCart(cart);
+  actualizarCarrito();       // <-- actualiza burbuja inmediatamente
+}
+
+export function quitarCarrito(id){
+  const cart = loadCart().filter(x=>x.id !== id);
   saveCart(cart);
   actualizarCarrito();
+  renderCarritoPage();
 }
 
-// Quita un producto entero
-export function quitarCarrito(id){
-  let cart = loadCart().filter(x=>x.id !== id);
-  saveCart(cart); actualizarCarrito(); renderCarritoPage();
-}
-
-// Cambia cantidad
-export function setCantidad(id, nueva){
+export function setCantidad(id, nuevaCant){
   let cart = loadCart();
   const i = cart.findIndex(x=>x.id===id);
   if (i<0) return;
-  cart[i].cant = Math.max(0, nueva);
+  cart[i].cant = Math.max(0, Number(nuevaCant)||0);
   cart = cart.filter(x=>x.cant>0);
-  saveCart(cart); actualizarCarrito(); renderCarritoPage();
+  saveCart(cart);
+  actualizarCarrito();
+  renderCarritoPage();
 }
 
-// Vacía
 export function vaciarCarrito(){
-  saveCart([]); actualizarCarrito(); renderCarritoPage();
+  saveCart([]);
+  actualizarCarrito();
+  renderCarritoPage();
 }
 
-// Actualiza burbuja del header
 export function actualizarCarrito(){
+  // Lee SIEMPRE desde localStorage para que sea consistente entre páginas
   const countEl = document.getElementById('cartCount');
   if (!countEl) return;
   const cart = loadCart();
   countEl.textContent = String(cartCount(cart));
 }
 
-// Render de la página del carrito (si existe en el DOM)
+// Render de la página del carrito (solo si existen los nodos)
 export function renderCarritoPage(){
   const root = $('#carritoLista');
   const totalEl = $('#carritoTotal');
   if (!root || !totalEl) return;
 
   const cart = loadCart();
-
   if (!cart.length){
     root.innerHTML = `<p>Tu carrito está vacío.</p>`;
     totalEl.textContent = precioCLP(0);
@@ -108,10 +105,9 @@ export function renderCarritoPage(){
     </article>
   `).join('');
 
-  const subtotal = cartSubtotal(cart);
-  totalEl.textContent = precioCLP(subtotal);
+  totalEl.textContent = precioCLP(cartSubtotal(cart));
 
-  // Bind de botones
+  // Bind botones cantidad / quitar
   root.querySelectorAll('.qty-minus').forEach(b => b.addEventListener('click', e=>{
     const id = Number(e.currentTarget.dataset.id);
     const it = loadCart().find(x=>x.id===id);
@@ -130,7 +126,7 @@ export function renderCarritoPage(){
   document.getElementById('btnVaciar')?.addEventListener('click', vaciarCarrito);
   document.getElementById('btnPagar')?.addEventListener('click', ()=>{
     if (!loadCart().length) { alert('Tu carrito está vacío.'); return; }
-    alert('✅ (Demo) Gracias por tu compra. Aquí iría el flujo de pago.');
+    alert('✅ (Demo) Gracias por tu compra.');
     vaciarCarrito();
   });
 }
