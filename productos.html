@@ -14,8 +14,13 @@
         <img src="assets/logo.svg" alt="Chetanga" class="logo-img" />
         </a>
 
-        <!-- Botón hamburguesa (se muestra en <= 980px) -->
+        <!-- Acciones: carrito + hamburguesa -->
+            <div class="header-actions">
+        <a class="btn-cart" href="carrito.html" aria-label="Ver carrito">
+            🛒 <span id="cartCount">0</span>
+        </a>
         <button class="menu-toggle" aria-expanded="false" aria-controls="navMenu" aria-label="Abrir menú">☰</button>
+        </div>
 
         <nav id="navMenu" aria-label="Principal">
         <ul class="nav">
@@ -26,11 +31,6 @@
             <li><a href="contacto.html">Contacto</a></li>
             <li><a href="registro.html">Registrarse</a></li>
             <li><a href="login.html">Login</a></li>
-            <li>
-            <a class="btn-cart" href="carrito.html" aria-label="Ver carrito">🛒 <span id="cartCount">0</span></a>
-
-
-            </li>
         </ul>
         </nav>
     </div>
@@ -83,6 +83,5 @@
 
     <!-- JS -->
     <script type="module" src="js/app.js"></script>
-
 </body>
 </html>

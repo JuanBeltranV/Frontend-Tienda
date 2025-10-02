@@ -9,89 +9,89 @@
 <body>
     <!-- HEADER -->
     <header class="shadow">
-    <div class="container topbar">
-        <a class="logo" href="index.html">
-        <img src="assets/logo.svg" alt="Chetanga" class="logo-img" />
-        </a>
+        <div class="container topbar">
+            <a class="logo" href="index.html">
+                <img src="assets/logo.svg" alt="Chetanga" class="logo-img" />
+            </a>
 
-        <button class="menu-toggle" aria-expanded="false" aria-controls="navMenu" aria-label="Abrir menú">☰</button>
+            <!-- Acciones: carrito + botón hamburguesa -->
+            <div class="header-actions">
+                <a class="btn-cart" href="carrito.html" aria-label="Ver carrito">
+                    🛒 <span id="cartCount">0</span>
+                </a>
+                <button class="menu-toggle" aria-expanded="false" aria-controls="navMenu" aria-label="Abrir menú">☰</button>
+            </div>
 
-        <nav id="navMenu" aria-label="Principal">
-        <ul class="nav">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="productos.html">Productos</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="nosotros.html">Nosotros</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-            <li><a href="registro.html">Registrarse</a></li>
-            <li><a class="active" href="login.html">Login</a></li>
-            <li>
-            <a class="btn-cart" href="carrito.html" aria-label="Ver carrito">🛒 <span id="cartCount">0</span></a>
-
-
-            </li>
-        </ul>
-        </nav>
-    </div>
+            <nav id="navMenu" aria-label="Principal">
+                <ul class="nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="registro.html">Registrarse</a></li>
+                    <li><a class="active" href="login.html">Login</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <!-- MAIN -->
     <main class="container" style="padding:1rem 0 2rem">
-    <h1>Iniciar sesión</h1>
+        <h1>Iniciar sesión</h1>
 
-    <form id="formLogin" class="form-card" novalidate>
-        <div class="field">
-        <label for="loginEmail">Correo</label>
-        <input id="loginEmail" name="email" type="email" required autocomplete="email" inputmode="email" />
-        <small class="error" aria-live="polite"></small>
-        </div>
+        <form id="formLogin" class="form-card" novalidate>
+            <div class="field">
+                <label for="loginEmail">Correo</label>
+                <input id="loginEmail" name="email" type="email" required autocomplete="email" inputmode="email" />
+                <small class="error" aria-live="polite"></small>
+            </div>
 
-        <div class="field">
-        <label for="loginPass">Contraseña</label>
-        <input id="loginPass" name="pass" type="password" required minlength="6" autocomplete="current-password" />
-        <small class="error" aria-live="polite"></small>
-        </div>
+            <div class="field">
+                <label for="loginPass">Contraseña</label>
+                <input id="loginPass" name="pass" type="password" required minlength="6" autocomplete="current-password" />
+                <small class="error" aria-live="polite"></small>
+            </div>
 
-        <div class="row" style="margin-top:.75rem">
-        <button type="submit">Entrar</button>
-        <a class="btn" href="registro.html" style="text-decoration:none">Crear cuenta</a>
-        </div>
+            <div class="row" style="margin-top:.75rem">
+                <button type="submit">Entrar</button>
+                <a class="btn" href="registro.html" style="text-decoration:none">Crear cuenta</a>
+            </div>
 
-        <div id="loginOk" class="ok" role="status" aria-live="polite" hidden>
-        ¡Bienvenido! Redirigiendo…
-        </div>
-    </form>
+            <div id="loginOk" class="ok" role="status" aria-live="polite" hidden>
+                ¡Bienvenido! Redirigiendo…
+            </div>
+        </form>
     </main>
 
     <!-- FOOTER -->
     <footer>
-    <div class="container footer-grid">
-        <div>
-        <h4>Chetanga™</h4>
-        <p>Cómics y Mangas.</p>
+        <div class="container footer-grid">
+            <div>
+                <h4>Chetanga™</h4>
+                <p>Cómics y Mangas.</p>
+            </div>
+            <div>
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="productos.html">Productos</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Redes</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">X/Twitter</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
+            </div>
         </div>
-        <div>
-        <h4>Navegación</h4>
-        <ul>
-            <li><a href="productos.html">Productos</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-        </ul>
-        </div>
-        <div>
-        <h4>Redes</h4>
-        <ul>
-            <li><a href="#">Instagram</a></li>
-            <li><a href="#">X/Twitter</a></li>
-            <li><a href="#">YouTube</a></li>
-        </ul>
-        </div>
-    </div>
-    <div class="copy">© 2025 Chetanga™ Comics & Mangas</div>
+        <div class="copy">© 2025 Chetanga™ Comics & Mangas</div>
     </footer>
 
     <!-- JS -->
     <script type="module" src="js/app.js"></script>
-
 </body>
 </html>
