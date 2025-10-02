@@ -189,7 +189,7 @@ header{
 }
 .detail-info h1{ margin:.2rem 0 .3rem; }
 
-/* ===== Carrito (fila horizontal con miniatura fija) ===== */
+/* ===== Carrito (LISTA HORIZONTAL CON MINIATURA PEQUEÑA) ===== */
 .cart-list{
   display:flex;
   flex-direction:column;
@@ -197,40 +197,43 @@ header{
   margin:.75rem 0 1rem;
 }
 
-/* Fila: columnas (producto compuesto | precio | qty | subtotal | acciones) */
+/* Fila como lista: producto | precio | qty | subtotal | acciones */
 .cart-row{
-  display:grid;
-  grid-template-columns: 1.6fr 0.6fr 0.7fr 0.7fr 0.5fr;
+  display:flex;
   align-items:center;
-  gap:.6rem;
+  gap:.75rem;
   background:#151515;
   border:1px solid #262626;
   border-radius:10px;
-  padding:.65rem .8rem;
+  padding:.55rem .75rem;
 }
 
-/* Bloque producto: miniatura fija + nombre elíptico */
-.cart-product{
-  display:grid;
-  grid-template-columns: 64px 1fr;   /* <- miniatura fija + nombre */
-  align-items:center;
-  gap:.6rem;
-  min-width:0;                       /* permite elipsis */
+/* Miniatura SIEMPRE pequeña: ignora img{max-width:100%} */
+.cart-row img{
+  width:48px;
+  height:48px;
+  max-width:none !important;
+  object-fit:cover;
+  border-radius:8px;
+  border:1px solid #262626;
+  background:#111;
+  flex:0 0 48px;
 }
-.cart-thumb{
-  width:64px; height:64px;
-  border-radius:8px; object-fit:cover;
-  border:1px solid #262626; background:#111;
-}
+
+/* Bloque nombre ocupa lo flexible y hace elipsis */
 .cart-name{
-  font-weight:600; margin:0;
+  flex:1 1 auto;
+  margin:0;
   white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
 }
 
-/* Precio unitario */
-.cart-price{ text-align:center; color:var(--muted); }
+/* Columnas compactas a la derecha */
+.cart-price, .cart-qty, .cart-line, .cart-actions{
+  width:110px;
+  text-align:center;
+}
 
-/* Cantidad */
+/* Cantidad compacta */
 .cart-qty{
   display:flex; justify-content:center; align-items:center; gap:.4rem;
 }
@@ -239,13 +242,10 @@ header{
   padding:.3rem .55rem; border-radius:8px; cursor:pointer;
 }
 
-/* Subtotal */
-.cart-line{
-  text-align:center; font-weight:600; color:var(--brand2);
-}
+/* Subtotal destacado */
+.cart-line{ font-weight:600; color:var(--brand2); }
 
-/* Acciones (quitar) */
-.cart-actions{ text-align:center; }
+/* Botón eliminar */
 .cart-actions .rm{
   background:transparent; border:1px solid #3a3a3a; color:#f5f5f5;
   border-radius:8px; padding:.35rem .6rem; cursor:pointer;
@@ -299,28 +299,16 @@ footer{ background:#101010; margin-top:2rem; border-top:1px solid #1e1e1e }
 
   .row2{ grid-template-columns:1fr; }
   .detail-grid{ grid-template-columns:1fr; }
-
-  /* Carrito: compactar algo */
-  .cart-row{
-    grid-template-columns: 1.5fr 0.6fr 0.7fr 0.7fr 0.5fr;
-  }
-  .cart-thumb{ width:56px; height:56px; }
 }
 
 @media (max-width:600px){
   .nav a{ padding:.6rem .75rem }
   .logo-text{ display:none; }
 
-  /* Carrito móvil: apilar en dos bloques */
-  .cart-row{
-    grid-template-columns: 1fr;       /* todo apilado */
-    row-gap:.45rem;
-  }
-  .cart-product{ grid-template-columns: 56px 1fr; } /* miniatura un poco menor */
-  .cart-thumb{ width:56px; height:56px; }
-
+  /* Carrito móvil: dos renglones pero miniatura chica */
+  .cart-row{ flex-wrap:wrap; row-gap:.4rem; }
   .cart-price, .cart-qty, .cart-line, .cart-actions{
-    text-align:left;
+    width:auto; text-align:left;
   }
 }
 
