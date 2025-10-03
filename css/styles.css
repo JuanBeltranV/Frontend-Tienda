@@ -42,25 +42,26 @@ header{
 .logo{ display:flex; gap:.5rem; align-items:center; font-weight:700 }
 .logo-img{ height:72px; position:relative; top:4px; z-index:2 }
 
-/* Nav en desktop */
+/* Nav (desktop) */
 #navMenu{ flex:1 1 auto; }
 .nav{ list-style:none; display:flex; gap:1rem; padding:0; margin:0; justify-content:flex-end; }
 .nav a{ padding:.5rem .75rem; border-radius:8px }
 .nav a.active, .nav a:hover{ background:var(--brand); color:#fff; text-decoration:none }
 
-/* Carrito */
+/* Carrito (desktop) */
 .btn-cart{
   display:inline-flex; align-items:center; gap:.35rem;
   background:#222; border-radius:8px; padding:.5rem .75rem;
-  white-space:nowrap;
+  white-space:nowrap; justify-self:end;
 }
+#cartCount{ font-weight:600; }
 
-/* Hamburguesa oculta en desktop */
+/* Hamburguesa (oculta en desktop) */
 .menu-toggle{
   display:none;
   background:#1b1b1b; color:var(--fg);
   border:1px solid #2a2a2a; border-radius:8px;
-  padding:.5rem .75rem; cursor:pointer;
+  padding:.5rem .75rem; cursor:pointer; justify-self:end;
 }
 
 /* ===== HERO full-width ===== */
@@ -169,40 +170,48 @@ footer{ background:#101010; margin-top:2rem; border-top:1px solid #1e1e1e }
   /* Mostrar hamburguesa */
   .menu-toggle{ display:inline-flex; align-items:center; }
 
-  /* Nav colapsable debajo */
+  /* Header: logo izq, (nav colapsa), carrito + hamburguesa a la derecha en la misma fila */
+  .topbar{
+    grid-template-columns:auto 1fr auto auto;
+  }
+
+  /* Menú colapsable ordenado debajo del header */
   #navMenu{
     position:absolute; left:0; right:0; top:100%;
     background:#111; border-top:1px solid #1e1e1e;
-    overflow:hidden; max-height:0; transition:max-height .25s ease; z-index:999;
+    overflow:hidden; max-height:0; transition:max-height .25s ease;
+    z-index:999; box-shadow:0 10px 24px rgba(0,0,0,.25);
   }
   #navMenu.open{ max-height:80vh; overflow:auto; }
-  .nav{ flex-direction:column; gap:.25rem; padding:.6rem 1rem }
+  .nav{
+    flex-direction:column; gap:0; padding:.25rem 0;
+    align-items:stretch;
+  }
+  .nav li{ border-bottom:1px solid #1e1e1e; }
+  .nav li:last-child{ border-bottom:none; }
+  .nav a{
+    display:block; width:100%;
+    padding:.7rem 1rem; border-radius:0;
+  }
 
-  /* Ajustar logo */
+  /* Carrito como botón cuadrado con badge (no se estira) */
+  .btn-cart{
+    width:40px; height:40px; padding:0;
+    border-radius:10px; justify-content:center;
+    position:relative; justify-self:end;
+  }
+  /* el texto numérico como badge */
+  #cartCount{
+    position:absolute; top:-6px; right:-6px;
+    background:var(--brand); color:#fff;
+    border-radius:999px; min-width:18px; height:18px;
+    display:inline-flex; align-items:center; justify-content:center;
+    font-size:.7rem; line-height:1; padding:0 4px;
+    box-shadow:0 0 0 2px #111; /* borde para que destaque sobre el header */
+  }
+
   .logo-img{ height:60px; top:2px; }
-
-  /* Rejilla del header mantiene logo izq, carrito + hamburguesa der */
-  .topbar{ grid-template-columns:auto 1fr auto auto; }
-
   .row2{ grid-template-columns:1fr; }
   .detail-grid{ grid-template-columns:1fr; }
 
-  .cart-row{ grid-template-columns: 1.5fr 0.6fr 0.7fr 0.7fr 0.5fr; }
-  .cart-thumb{ width:56px; height:56px; }
-}
-
-@media (max-width:600px){
-  .nav a{ padding:.6rem .75rem }
-  .logo-text{ display:none; }
-
-  /* Carrito móvil más compacto */
-  .cart-row{ grid-template-columns: 1fr; row-gap:.45rem; }
-  .cart-product{ grid-template-columns: 56px 1fr; }
-  .cart-thumb{ width:56px; height:56px; }
-  .cart-price, .cart-qty, .cart-line, .cart-actions{ text-align:left; }
-}
-
-/* Reduce motion */
-@media (prefers-reduced-motion:reduce){
-  #navMenu{ transition:none }
-}
+ 
