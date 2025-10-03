@@ -13,11 +13,12 @@
     <!-- HEADER -->
     <header class="shadow">
   <div class="container topbar">
+    <!-- Logo a la izquierda -->
     <a class="logo" href="index.html">
       <img src="assets/logo.svg" alt="Chetanga" class="logo-img" />
     </a>
 
-    <!-- Nav ocupa el centro en desktop -->
+    <!-- Nav a la derecha (antes del carrito) -->
     <nav id="navMenu" aria-label="Principal">
       <ul class="nav">
         <li><a class="active" href="index.html">Home</a></li>
@@ -30,15 +31,16 @@
       </ul>
     </nav>
 
-    <!-- Acciones: carrito visible + botón hamburguesa -->
-    <div class="head-actions">
-      <a class="btn-cart" href="carrito.html" aria-label="Ver carrito">
-        🛒 <span id="cartCount">0</span>
-      </a>
-      <button class="menu-toggle" aria-expanded="false" aria-controls="navMenu" aria-label="Abrir menú">☰</button>
-    </div>
+    <!-- Carrito pegado a la derecha -->
+    <a class="btn-cart" href="carrito.html" aria-label="Ver carrito">
+      🛒 <span id="cartCount">0</span>
+    </a>
+
+    <!-- Hamburguesa (solo en móvil) -->
+    <button class="menu-toggle" aria-expanded="false" aria-controls="navMenu" aria-label="Abrir menú">☰</button>
   </div>
 </header>
+
 
 
     <!-- MAIN -->
