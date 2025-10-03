@@ -130,25 +130,52 @@ header{
 .detail-info h1{ margin:.2rem 0 .3rem; }
 
 /* ===== Carrito (lista en filas) ===== */
-.cart-list{ display:flex; flex-direction:column; gap:.75rem; margin:.75rem 0 1rem; }
+.cart-list{
+  display:flex; flex-direction:column; gap:.75rem; margin:.75rem 0 1rem;
+}
+
+/* Desktop: [imagen][nombre] [precio] [-][qty][+] [subtotal] [quitar] */
 .cart-row{
   display:grid;
   grid-template-columns: 1.6fr 0.6fr 0.7fr 0.7fr 0.5fr; /* producto | precio | qty | subtotal | quitar */
+  grid-template-areas: "prod price qty line actions";
   align-items:center; gap:.6rem;
   background:#151515; border:1px solid #262626; border-radius:10px; padding:.65rem .8rem;
 }
-.cart-product{
-  display:grid; grid-template-columns: 64px 1fr; align-items:center; gap:.6rem; min-width:0;
-}
-.cart-thumb{ width:64px; height:64px; border-radius:8px; object-fit:cover; border:1px solid #262626; background:#111; }
-.cart-name{ font-weight:600; margin:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.cart-price{ text-align:center; color:var(--muted); }
-.cart-qty{ display:flex; justify-content:center; align-items:center; gap:.4rem; }
-.cart-qty button{ background:#222; border:1px solid #2a2a2a; padding:.3rem .55rem; border-radius:8px; cursor:pointer; }
-.cart-line{ text-align:center; font-weight:600; color:var(--brand2); }
-.cart-actions{ text-align:center; }
-.cart-actions .rm{ background:transparent; border:1px solid #3a3a3a; color:#f5f5f5; border-radius:8px; padding:.35rem .6rem; cursor:pointer; }
 
+.cart-product{
+  grid-area: prod;
+  display:grid;
+  grid-template-columns: 64px 1fr;  /* miniatura + nombre */
+  align-items:center; gap:.6rem;
+  min-width:0;
+}
+.cart-thumb{
+  width:64px; height:64px; border-radius:8px; object-fit:cover;
+  border:1px solid #262626; background:#111;
+}
+.cart-name{
+  font-weight:600; margin:0;
+  /* nombre completo en desktop */
+  white-space:normal; overflow:visible; text-overflow:clip;
+}
+
+.cart-price{ grid-area: price; text-align:center; color:var(--muted); }
+.cart-qty{
+  grid-area: qty; display:flex; justify-content:center; align-items:center; gap:.4rem;
+}
+.cart-qty button{
+  background:#222; border:1px solid #2a2a2a; padding:.3rem .55rem; border-radius:8px; cursor:pointer;
+}
+.cart-line{ grid-area: line; text-align:center; font-weight:600; color:var(--brand2); }
+.cart-actions{
+  grid-area: actions; text-align:center;
+}
+.cart-actions .rm{
+  background:transparent; border:1px solid #3a3a3a; color:#f5f5f5; border-radius:8px; padding:.35rem .6rem; cursor:pointer;
+}
+
+/* Resumen */
 .cart-summary{ margin-top:1rem; }
 .cart-totals{
   background:#151515; border:1px solid #262626; border-radius:10px;
@@ -214,6 +241,7 @@ footer{ background:#101010; margin-top:2rem; border-top:1px solid #1e1e1e }
   .row2{ grid-template-columns:1fr; }
   .detail-grid{ grid-template-columns:1fr; }
 
+  /* Afinado de columnas desktop cuando la ventana se acerca a tablet */
   .cart-row{ grid-template-columns: 1.5fr 0.6fr 0.7fr 0.7fr 0.5fr; }
   .cart-thumb{ width:56px; height:56px; }
 }
@@ -222,11 +250,38 @@ footer{ background:#101010; margin-top:2rem; border-top:1px solid #1e1e1e }
   .nav a{ padding:.6rem .75rem }
   .logo-text{ display:none; }
 
-  /* Carrito móvil más compacto: apilar campos */
-  .cart-row{ grid-template-columns: 1fr; row-gap:.45rem; }
-  .cart-product{ grid-template-columns: 56px 1fr; }
-  .cart-thumb{ width:56px; height:56px; }
-  .cart-price, .cart-qty, .cart-line, .cart-actions{ text-align:left; }
+  /* Carrito móvil en 4 líneas:
+     1) imagen, 2) nombre, 3) precio/qty/subtotal, 4) quitar a la derecha */
+  .cart-row{
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+      "prod prod prod"
+      "prod prod prod"
+      "price qty line"
+      "actions actions actions";
+    row-gap:.45rem;
+  }
+
+  /* Producto apilado: miniatura arriba, nombre debajo, completo */
+  .cart-product{
+    grid-template-columns: 1fr;
+    justify-items:start;
+  }
+  .cart-thumb{
+    width:64px; height:64px;
+    justify-self:start;
+  }
+  .cart-name{
+    margin-top:.25rem;
+    white-space:normal; overflow:visible; text-overflow:clip;
+  }
+
+  .cart-price, .cart-qty, .cart-line{
+    text-align:left;
+  }
+  .cart-actions{
+    text-align:right; justify-self:end;
+  }
 }
 
 /* Reduce motion */
