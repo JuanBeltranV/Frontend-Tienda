@@ -33,24 +33,29 @@ header{
   border-bottom:1px solid #1a1a1a; overflow:visible;
 }
 .topbar{
-  display:flex; align-items:center; gap:1rem; padding:10px 0;
+  display:grid;
+  grid-template-columns: auto 1fr auto auto; /* logo | nav | carrito | hamburguesa */
+  align-items:center;
+  gap:.75rem;
+  padding:10px 0;
 }
 .logo{ display:flex; gap:.5rem; align-items:center; font-weight:700 }
 .logo-img{ height:72px; position:relative; top:4px; z-index:2 }
 
-/* Nav a la derecha en desktop */
-#navMenu{ margin-left:auto; }
-.nav{ list-style:none; display:flex; gap:1rem; padding:0; margin:0 }
-.nav a{ display:block; padding:.5rem .75rem; border-radius:8px; text-decoration:none; }
+/* Nav en desktop */
+#navMenu{ flex:1 1 auto; }
+.nav{ list-style:none; display:flex; gap:1rem; padding:0; margin:0; justify-content:flex-end; }
+.nav a{ padding:.5rem .75rem; border-radius:8px }
 .nav a.active, .nav a:hover{ background:var(--brand); color:#fff; text-decoration:none }
 
-/* Carrito pegado a la derecha */
+/* Carrito */
 .btn-cart{
+  display:inline-flex; align-items:center; gap:.35rem;
   background:#222; border-radius:8px; padding:.5rem .75rem;
-  white-space:nowrap; display:inline-flex; align-items:center; gap:.35rem;
+  white-space:nowrap;
 }
 
-/* Hamburguesa: oculta en desktop */
+/* Hamburguesa oculta en desktop */
 .menu-toggle{
   display:none;
   background:#1b1b1b; color:var(--fg);
@@ -82,14 +87,7 @@ header{
 
 /* ===== Cards / Grid ===== */
 .grid{ display:grid; gap:1rem; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); }
-.card{ background:#161616; border:1px solid #262626; border-radius:10px; overflow:hidden; }
-.card > img{
-  width:100%;
-  /* unificamos el alto de las portadas */
-  aspect-ratio: 3 / 4;           /* 3:4 tipo portada */
-  object-fit: cover;
-  display:block;
-}
+.card{ background:#161616; border:1px solid #262626; border-radius:10px; }
 .card .p{ padding:.9rem }
 .card h3{ margin:0 0 .25rem; font-size:1rem }
 .price{ color:var(--brand2); font-weight:700; margin-top:.35rem }
@@ -171,34 +169,33 @@ footer{ background:#101010; margin-top:2rem; border-top:1px solid #1e1e1e }
   /* Mostrar hamburguesa */
   .menu-toggle{ display:inline-flex; align-items:center; }
 
-  /* Menú colapsable ordenado */
+  /* Nav colapsable debajo */
   #navMenu{
     position:absolute; left:0; right:0; top:100%;
     background:#111; border-top:1px solid #1e1e1e;
     overflow:hidden; max-height:0; transition:max-height .25s ease; z-index:999;
   }
   #navMenu.open{ max-height:80vh; overflow:auto; }
-  .nav{ flex-direction:column; gap:0; padding:.4rem 0 }
-  .nav li{ border-top:1px solid #1e1e1e; }
-  .nav li:first-child{ border-top:none; }
-  .nav a{ padding:.75rem 1rem; border-radius:0; }
+  .nav{ flex-direction:column; gap:.25rem; padding:.6rem 1rem }
 
-  /* Logo tamaño móvil */
+  /* Ajustar logo */
   .logo-img{ height:60px; top:2px; }
+
+  /* Rejilla del header mantiene logo izq, carrito + hamburguesa der */
+  .topbar{ grid-template-columns:auto 1fr auto auto; }
 
   .row2{ grid-template-columns:1fr; }
   .detail-grid{ grid-template-columns:1fr; }
 
-  /* Carrito compacto */
   .cart-row{ grid-template-columns: 1.5fr 0.6fr 0.7fr 0.7fr 0.5fr; }
   .cart-thumb{ width:56px; height:56px; }
 }
 
 @media (max-width:600px){
-  .nav a{ padding:.6rem .9rem }
+  .nav a{ padding:.6rem .75rem }
   .logo-text{ display:none; }
 
-  /* Carrito móvil aún más simple */
+  /* Carrito móvil más compacto */
   .cart-row{ grid-template-columns: 1fr; row-gap:.45rem; }
   .cart-product{ grid-template-columns: 56px 1fr; }
   .cart-thumb{ width:56px; height:56px; }
@@ -208,9 +205,4 @@ footer{ background:#101010; margin-top:2rem; border-top:1px solid #1e1e1e }
 /* Reduce motion */
 @media (prefers-reduced-motion:reduce){
   #navMenu{ transition:none }
-}
-
-/* Fallback si (por error) alguien deja el carrito DENTRO del nav en desktop */
-@media (min-width:981px){
-  .nav li:last-child{ margin-left:auto; }
 }
