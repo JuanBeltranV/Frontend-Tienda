@@ -88,11 +88,21 @@ header{
 
 /* ===== Cards / Grid ===== */
 .grid{ display:grid; gap:1rem; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); }
-.card{ background:#161616; border:1px solid #262626; border-radius:10px; }
+.card{ background:#161616; border:1px solid #262626; border-radius:10px; overflow:hidden; }
 .card .p{ padding:.9rem }
 .card h3{ margin:0 0 .25rem; font-size:1rem }
 .price{ color:var(--brand2); font-weight:700; margin-top:.35rem }
 .row{ display:flex; gap:.5rem; margin-top:.5rem }
+
+/* 🔧 Imágenes de productos con altura uniforme (NO afecta carrito ni blog) */
+#gridDestacados .card img,
+#gridProductos   .card img,
+#relacionadosGrid .card img{
+  width:100%;
+  height:240px;           /* puedes subir/bajar este valor si quieres más/menos alto */
+  object-fit:cover;
+  display:block;
+}
 
 /* ===== Blog ===== */
 .blog-article{ margin-bottom:2rem; }
