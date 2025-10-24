@@ -44,7 +44,7 @@ header{
 
 /* Nav (desktop) */
 #navMenu{ flex:1 1 auto; }
-.nav{ list-style:none; display:flex; gap:1rem; padding:0; margin:0; justify-content:flex-end; }
+.nav{ list-style:none; display:flex; gap:1rem; padding:0; margin:0; justify-content:center; }
 .nav a{ padding:.5rem .75rem; border-radius:8px }
 .nav a.active, .nav a:hover{ background:var(--brand); color:#fff; text-decoration:none }
 
@@ -304,9 +304,4 @@ footer{ background:#101010; margin-top:2rem; border-top:1px solid #1e1e1e }
 /* Reduce motion */
 @media (prefers-reduced-motion:reduce){
   #navMenu{ transition:none }
-}
-
-/* Fallback si alguien deja el carrito DENTRO del nav en desktop */
-@media (min-width:981px){
-  .nav li:last-child{ margin-left:auto; }
 }
